@@ -14,5 +14,5 @@
     'assets':{
         'web.assets_backend':['app_one/static/assets/css/properties.css']
     },
-    'application': True
+    'application': True 
 }
