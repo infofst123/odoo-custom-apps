@@ -1,0 +1,49 @@
+<odoo>
+    <record id="property_view_tree" model="ir.ui.view">
+        <field name="name">property tree</field>
+        <field name="model">property</field>
+        <field name="arch" type="xml">
+            <list class="list-custom">
+                <field name="name"/>
+                <field name="date_availability"/>
+                <field name="selling_price"/>
+                <field name="garden"/>
+            </list>
+        </field>  
+    </record>
+
+    <record id="property_view_form" model="ir.ui.view">
+        <field name="name">property Form</field>
+        <field name="model">property</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <header>
+                        <button type="object" name="action_draft" class="btn-primary" string="Set to Draft" invisible="state == 'draft'"/><!-- if the type is 'objet' then the name should be the name of the method-->
+                        <button type="object" name="action_pending" class="btn-secondary" string="Set to Pending" invisible="state == 'sold' or state=='pending' "/>
+                        <button type="object" name="action_sold" class="btn-success" string="Set to Sold" invisible="state == 'draft' or state == 'sold"/>
+                        
+                        <!-- <field name="state" widget="statusbar" statusbar_visible="draft,sold" options="{clickable:1}"/> -->
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <group>
+                        <field name="name"/>
+                        <field name="date_availability"/>
+                        <field name="selling_price"/>
+                        <field name="garden"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>  
+    </record>
+    <record id="property_action" model="ir.actions.act_window">
+        <field name="name">property action</field>
+        <field name="res_model">property</field>
+    </record>
+    <menuitem
+        id="property_menu_item"
+        name="Properties"
+        parent="properties_menu"
+        action="property_view_tree"
+    />
+</odoo>
